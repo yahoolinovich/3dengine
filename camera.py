@@ -9,7 +9,7 @@ class Camera:
         self.pos = np.array([*pos, 0.0])
         self.H_FOV = math.pi / 3
         self.V_FOV = self.H_FOV * (eng.height / eng.width)
-        self.clip_near = 500
+        self.clip_near = 1
         self.clip_far = 1000.0
 
     def move(self):
