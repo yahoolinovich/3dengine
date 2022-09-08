@@ -47,7 +47,7 @@ class Camera:
     def screen_projection(self):
         return np.array([
             [self.eng.width / 2,0,0,0],
-            [0,self.eng.height / 2,0,0],
+            [0,-self.eng.height / 2,0,0],
             [0,0,1,0],
             [(self.eng.width / 2),(self.eng.height / 2),0,1]
         ])
