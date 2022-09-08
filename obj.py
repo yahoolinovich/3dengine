@@ -7,8 +7,8 @@ class Object:
         self.eng = eng
         self.file_name = file_name
         self.vertices, self.faces = self.open_obj(self.file_name)
-        print(f'Vertices: \n')
-        print(f'\nFaces: \n')
+        print(f'Vertices: \n{self.vertices}')
+        print(f'\nFaces: \n{self.faces}')
         # self.vertices = np.array([
         #     [-1,-1,1,1],[-1,-1,-1,1],[-1,1,1,1],[-1,1,-1,1],
         #     [1,1,1,1],[1,1,-1,1],[1,-1,1,1],[1,-1,-1,1]
