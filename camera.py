@@ -14,7 +14,7 @@ class Camera:
 
     def move(self):
         key = pygame.key.get_pressed()
-        speed = 10
+        speed = 1
         if key[pygame.K_s]:
             self.pos -= [0,0,speed,0]
         if key[pygame.K_w]:
