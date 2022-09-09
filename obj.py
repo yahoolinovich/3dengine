@@ -7,8 +7,8 @@ class Object:
         self.eng = eng
         self.file_name = file_name
         self.vertices, self.faces = self.open_obj(self.file_name)
-        print(f'Vertices: \n{self.vertices}')
-        print(f'\nFaces: \n{self.faces}')
+        # print(f'Vertices: \n{self.vertices}')
+        # print(f'\nFaces: \n{self.faces}')
         # self.vertices = np.array([
         #     [-1,-1,1,1],[-1,-1,-1,1],[-1,1,1,1],[-1,1,-1,1],
         #     [1,1,1,1],[1,1,-1,1],[1,-1,1,1],[1,-1,-1,1]
@@ -31,9 +31,9 @@ class Object:
                     fc = [i.split('/') for i in lines_2]
                     vf = []
                     for sub_list in fc:
-                        vf.append(int(sub_list[0]))
-                        faces.append(vf)
-        return np.array(vertices), np.array(faces)
+                        vf.append(int(sub_list[0])-1)
+                    faces.append(vf)
+        return np.array(vertices), faces
     
     def rotation_x(self, angle):
         x = np.array([
@@ -84,7 +84,7 @@ class Object:
         return new_vertices
 
     def draw(self):
-        # self.vertices = np.dot(self.vertices,self.rotation_x(math.radians(1)))
+        # self.vertices = np.dot(self.vertices,self.rotation_y(math.radians(1)))
         vertices = self.camera_relation()
         # print(f'1: {vertices[0]} \n')
         vertices = np.dot(vertices, self.eng.cam.project_matrix())
@@ -97,4 +97,4 @@ class Object:
             pygame.draw.circle(self.eng.screen, pygame.Color('red'), i, 3)
         vix = vertices[:,:2]
         for face in self.faces:
-            pygame.draw.polygon(self.eng.screen, pygame.Color('white'), vix[face-1], 1)
+            pygame.draw.polygon(self.eng.screen, pygame.Color('white'), vix[face], 1)
