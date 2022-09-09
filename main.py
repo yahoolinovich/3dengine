@@ -11,7 +11,7 @@ class Engine:
         self.clock = pygame.time.Clock()
         self.FPS = 60
         self.cam = Camera(self,[0,0,-40])
-        self.obj = Object(self, 'Glass desk.obj')
+        self.obj = Object(self, 'monkee.obj')
 
     def play(self):
         # self.obj.vertices = np.dot(self.obj.vertices, self.obj.scale(100))
