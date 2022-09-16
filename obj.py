@@ -84,7 +84,7 @@ class Object:
         return new_vertices
 
     def draw(self):
-        # self.vertices = np.dot(self.vertices,self.rotation_y(math.radians(1)))
+        # self.vertices = np.dot(self.vertices, self.rotation_x(math.radians(1)))
         vertices = self.camera_relation()
         # print(f'1: {vertices[0]} \n')
         vertices = np.dot(vertices, self.eng.cam.project_matrix())
@@ -94,7 +94,7 @@ class Object:
         vertices = np.dot(vertices, self.eng.cam.screen_projection())
         # print(f'4: {vertices[0]} \n')
         for i in vertices[:,:2]:
-            pygame.draw.circle(self.eng.screen, pygame.Color('red'), i, 3)
+            pygame.draw.circle(self.eng.screen, pygame.Color('red'), i, 2)
         vix = vertices[:,:2]
         for face in self.faces:
             pygame.draw.polygon(self.eng.screen, pygame.Color('white'), vix[face], 1)
