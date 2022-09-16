@@ -10,11 +10,12 @@ class Engine:
         self.screen = pygame.display.set_mode(self.RES)
         self.clock = pygame.time.Clock()
         self.FPS = 60
-        self.cam = Camera(self,[0,0,-40])
-        self.obj = Object(self, 'monkee.obj')
+        self.cam = Camera(self,[0,0,-400])
+        self.obj = Object(self, 'Glass desk.obj')
+        pygame.event.set_grab(True)
+        pygame.mouse.set_visible(False)
 
     def play(self):
-        # self.obj.vertices = np.dot(self.obj.vertices, self.obj.scale(100))
         while 1:
         # for i in range(1):
             for event in pygame.event.get():
@@ -24,6 +25,7 @@ class Engine:
             self.screen.fill((0,0,0))
             self.cam.move()
             self.obj.draw()
+            pygame.mouse.set_pos(400, 300)
             pygame.display.flip()
             self.clock.tick(self.FPS)
 
