@@ -3,6 +3,7 @@ import pygame
 from camera import *
 from obj import *
 
+
 class Engine:
     def __init__(self):
         pygame.init()
@@ -10,12 +11,13 @@ class Engine:
         self.screen = pygame.display.set_mode(self.RES)
         self.clock = pygame.time.Clock()
         self.FPS = 60
-        self.cam = Camera(self,[0,0,-400])
+        self.cam = Camera(self,[0,0,0])
         self.obj = Object(self, 'Glass desk.obj')
         pygame.event.set_grab(True)
         pygame.mouse.set_visible(False)
 
     def play(self):
+        self.obj.vertices = self.obj.vertices @ self.obj.translation([0,0,400])
         while 1:
         # for i in range(1):
             for event in pygame.event.get():
