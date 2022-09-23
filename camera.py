@@ -15,25 +15,27 @@ class Camera:
     def move(self):
         key = pygame.key.get_pressed()
         mouse_pos_x, mouse_pos_y = pygame.mouse.get_rel()
-        speed = 10
+        print(mouse_pos_x, mouse_pos_y)
+        speed = 5
+        rot_speed = 0.003
+        diff = self.eng.obj.camera_relation()
         if key[pygame.K_s]:
-            self.pos -= [0,0,speed,0]
+            self.pos -= [0, 0, speed, 0]
         if key[pygame.K_w]:
-            self.pos += [0,0,speed,0]
+            self.pos += [0, 0, speed, 0]
         if key[pygame.K_a]:
-            self.pos -= [speed,0,0,0]
+            self.pos -= [speed, 0, 0, 0]
         if key[pygame.K_d]:
             self.pos += [speed, 0, 0, 0]
+
         if mouse_pos_y < 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.pitch(-0.015)
+            self.eng.obj.vertices = self.eng.obj.vertices @ self.pitch(rot_speed * mouse_pos_y)
         if mouse_pos_y > 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.pitch(0.015)
-        if mouse_pos_x > 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.eng.obj.rotation_y(-0.015)
+            self.eng.obj.vertices = self.eng.obj.vertices @ self.pitch(rot_speed * mouse_pos_y)
         if mouse_pos_x < 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.eng.obj.rotation_y(0.015)
-
-
+            self.eng.obj.vertices = self.eng.obj.vertices @ self.yaw(rot_speed * mouse_pos_x)
+        if mouse_pos_x > 0:
+            self.eng.obj.vertices = self.eng.obj.vertices @ self.yaw(rot_speed * mouse_pos_x)
 
     def normalize_x(self):
         x = fov(self.H_FOV)
@@ -63,6 +65,15 @@ class Camera:
             [0,math.sin(a),math.cos(a),0],
             [0,0,0,1]
         ])
+
+    def yaw(self,angle):
+            y = np.array([
+                [math.cos(angle), 0, math.sin(angle), 0],
+                [0, 1, 0, 0],
+                [math.sin(-angle), 0, math.cos(angle), 0],
+                [0, 0, 0, 1]
+                ])
+            return y
 
     def screen_projection(self):
         return np.array([
