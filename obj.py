@@ -2,6 +2,7 @@ import math
 import numpy as np
 import pygame
 
+
 class Object:
     def __init__(self, eng, file_name):
         self.eng = eng
@@ -37,27 +38,27 @@ class Object:
     
     def rotation_x(self, angle):
         x = np.array([
-            [1, 0, 0,0],
+            [1, 0, 0, 0],
             [0, math.cos(angle), math.sin(angle), 0],
             [0, math.sin(-angle), math.cos(angle), 0],
-            [0,0,0,1]
+            [0, 0, 0, 1]
         ])
         return x
 
     def rotation_y(self, angle):
         y = np.array([
-            [math.cos(angle), 0, math.sin(-angle),0],
-            [0, 1, 0,0],
-            [math.sin(angle), 0, math.cos(angle),0],
+            [math.cos(angle), 0, math.sin(-angle), 0],
+            [0, 1, 0, 0],
+            [math.sin(angle), 0, math.cos(angle), 0],
             [0, 0, 0, 1]
         ])
         return y
 
     def rotation_z(self, angle):
         z = np.array([
-            [math.cos(angle), math.sin(angle), 0,0],
-            [math.sin(-angle), math.cos(angle), 0,0],
-            [0, 0, 1,0],
+            [math.cos(angle), math.sin(angle), 0, 0],
+            [math.sin(-angle), math.cos(angle), 0, 0],
+            [0, 0, 1, 0],
             [0, 0, 0, 1]
         ])
         return z
