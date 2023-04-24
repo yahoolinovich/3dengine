@@ -19,13 +19,13 @@ class Camera:
         speed = 5
         mouse_sensitivity = 0.001
         if key[pygame.K_s]:
-            self.proj_cam -= [0, 0, speed, 0]
+            self.proj_cam -= [math.cos(self.rot_cam[0]) * speed, 0, math.sin(self.rot_cam[0]) * speed, 0]
         if key[pygame.K_w]:
-            self.proj_cam += [0, 0, speed, 0]
+            self.proj_cam += [math.cos(self.rot_cam[0]) * speed, 0, math.sin(self.rot_cam[0]) * speed, 0]
         if key[pygame.K_a]:
-            self.proj_cam -= [speed, 0, 0, 0]
+            self.proj_cam += [math.cos(self.rot_cam[0] + (math.pi/2)) * speed, 0, math.sin(self.rot_cam[0] + (math.pi/2)) * speed, 0]
         if key[pygame.K_d]:
-            self.proj_cam += [speed, 0, 0, 0]
+            self.proj_cam += [math.cos(self.rot_cam[0] - (math.pi/2)) * speed, 0, math.sin(self.rot_cam[0] - (math.pi/2)) * speed, 0]
 
         if mouse_pos_y < 0:
             self.rot_cam[1] -= mouse_sensitivity * mouse_pos_y
