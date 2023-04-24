@@ -8,7 +8,7 @@ from numba import njit
 class Engine:
     def __init__(self):
         pygame.init()
-        self.RES = self.width, self.height = 1600, 900
+        self.RES = self.width, self.height = 900, 900
         self.screen = pygame.display.set_mode(self.RES)
         self.clock = pygame.time.Clock()
         self.FPS = 60
