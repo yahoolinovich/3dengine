@@ -28,13 +28,13 @@ class Camera:
             self.proj_cam += [speed, 0, 0, 0]
 
         if mouse_pos_y < 0:
-            self.rot_cam[1] += mouse_sensitivity * mouse_pos_y
+            self.rot_cam[1] -= mouse_sensitivity * mouse_pos_y
         elif mouse_pos_y > 0:
-            self.rot_cam[1] += mouse_sensitivity * mouse_pos_y
+            self.rot_cam[1] -= mouse_sensitivity * mouse_pos_y
         if mouse_pos_x < 0:
-            self.rot_cam[0] += mouse_sensitivity * mouse_pos_x
+            self.rot_cam[0] -= mouse_sensitivity * mouse_pos_x
         elif mouse_pos_x > 0:
-            self.rot_cam[0] += mouse_sensitivity * mouse_pos_x
+            self.rot_cam[0] -= mouse_sensitivity * mouse_pos_x
 
     def normalize_x(self):
         x = fov(self.H_FOV)
