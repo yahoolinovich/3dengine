@@ -43,7 +43,7 @@ class Object:
                             textures_map.append([fc[0][1], fc[2][1], fc[3][1]])
 
         vertices = np.asarray(vertices).astype(float)
-        faces = np.asarray(faces).astype(int)
+        faces = np.asarray(faces).astype(int) - 1
 
         if len(uv) > 0 and len(textures_map) > 0:
             textured = True
