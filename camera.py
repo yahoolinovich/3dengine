@@ -6,8 +6,8 @@ import pygame.key
 class Camera:
     def __init__(self, eng, pos):
         self.eng = eng
-        self.pos = np.array(pos)
-        self.rot_cam = np.array([*pos, 2, 0.0])
+        self.proj_cam = np.array([*pos, 0.0])
+        self.rot_cam = np.array([2, 0.0])
         self.H_FOV = math.pi / 4
         self.V_FOV = self.H_FOV * (eng.height / eng.width)
         self.clip_near = 100
@@ -19,22 +19,22 @@ class Camera:
         speed = 5
         mouse_sensitivity = 0.001
         if key[pygame.K_s]:
-            self.eng.obj.vertices += [0, 0, speed, 0]
+            self.proj_cam -= [0, 0, speed, 0]
         if key[pygame.K_w]:
-            self.eng.obj.vertices -= [0, 0, speed, 0]
+            self.proj_cam += [0, 0, speed, 0]
         if key[pygame.K_a]:
-            self.eng.obj.vertices += [speed, 0, 0, 0]
+            self.proj_cam -= [speed, 0, 0, 0]
         if key[pygame.K_d]:
-            self.eng.obj.vertices -= [speed, 0, 0, 0]
+            self.proj_cam += [speed, 0, 0, 0]
 
         if mouse_pos_y < 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.pitch(mouse_sensitivity * mouse_pos_y)
+            self.rot_cam[1] += mouse_sensitivity * mouse_pos_y
         elif mouse_pos_y > 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.pitch(mouse_sensitivity * mouse_pos_y)
+            self.rot_cam[1] += mouse_sensitivity * mouse_pos_y
         if mouse_pos_x < 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.yaw(mouse_sensitivity * mouse_pos_x)
+            self.rot_cam[0] += mouse_sensitivity * mouse_pos_x
         elif mouse_pos_x > 0:
-            self.eng.obj.vertices = self.eng.obj.vertices @ self.yaw(mouse_sensitivity * mouse_pos_x)
+            self.rot_cam[0] += mouse_sensitivity * mouse_pos_x
 
     def normalize_x(self):
         x = fov(self.H_FOV)
@@ -53,7 +53,7 @@ class Camera:
             [self.normalize_x(),0,0,0],
             [0,self.normalize_y(),0,0],
             [0,0,self.normalize_z(),1],
-            [0,0,(-self.clip_far * self.clip_near) / (self.clip_far - self.clip_near),0]#(self.clip_near * self.clip_far * 2) / (self.clip_near - self.clip_far),0]
+            [0,0,(-self.clip_far * self.clip_near) / (self.clip_far - self.clip_near),0]
         ])
 
     def pitch(self,a):
@@ -86,7 +86,7 @@ class Camera:
             [self.normalize_x(),0,0,0],
             [0,self.normalize_y(),0,0],
             [0,0,self.normalize_z(),1],
-            [0,0,(-self.clip_far * self.clip_near) / (self.clip_far - self.clip_near),0] # (self.clip_near * self.clip_far * 2) / (self.clip_near - self.clip_far),0]
+            [0,0,(-self.clip_far * self.clip_near) / (self.clip_far - self.clip_near),0]
         ])
 
 

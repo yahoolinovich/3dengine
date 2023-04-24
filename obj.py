@@ -18,7 +18,7 @@ class Object:
         with open(filename) as file:
             for line in file:
                 if line.startswith('v '):
-                    lines = line[2:].split()
+                    lines = line[2:].split() + [1]
                     v = [float(i) for i in lines]
                     vertices.append(v)
                     
@@ -48,11 +48,11 @@ class Object:
         if len(uv) > 0 and len(textures_map) > 0:
             textured = True
             uv = np.asarray(uv).astype(float)
-            uv[:, 1] = 1 - texture_uv[:, 1]
+            uv[:, 1] = 1 - uv[:, 1]
             textures_map = np.asarray(textures_map).astype(int) - 1
 
         else:
-            uv, textures_map = np.asarray(uv), np.asarray(texture_map)
+            uv, textures_map = np.asarray(uv), np.asarray(textures_map)
             textured = False
 
         return vertices, faces, uv, textures_map, textured
@@ -102,11 +102,10 @@ class Object:
         ])
 
     def camera_relation(self):
-        new_vertices = self.vertices - self.eng.cam.pos
-        new_vertices1 = new_vertices.copy()
-        
-        new_vertices1 = new_vertices @ self.eng.cam.yaw(-self.eng.cam.rot_cam[3] + math.pi / 2)
-        new_vertices = new_vertices1 @ self.eng.cam.pitch(-self.eng.cam.rot_cam[3])
+        new_vertices = self.vertices - self.eng.cam.proj_cam
+
+        new_vertices1 = new_vertices @ self.eng.cam.yaw(-self.eng.cam.rot_cam[0] + math.pi / 2)
+        new_vertices = new_vertices1 @ self.eng.cam.pitch(-self.eng.cam.rot_cam[1])
 
         new_vertices[:, 2][(new_vertices[:,2] < 0.01) & (new_vertices[:, 2] > -0.01)] = -0.01
 
