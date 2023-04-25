@@ -57,6 +57,7 @@ class Object:
 
         return vertices, faces, uv, textures_map, textured
 
+# Object movement functions
     def rotation_x(self, angle):
         x = np.array([
             [1, 0, 0, 0],
@@ -101,12 +102,15 @@ class Object:
             [0, 0, 0, 1]
         ])
 
+# Subtract Object vertice positions from Camera position
     def camera_relation(self):
         new_vertices = self.vertices - self.eng.cam.proj_cam
 
+        # Apply camera rotation values / Horizontal and Vertical
         new_vertices1 = new_vertices @ self.eng.cam.yaw(-self.eng.cam.rot_cam[0] + math.pi / 2)
         new_vertices = new_vertices1 @ self.eng.cam.pitch(-self.eng.cam.rot_cam[1])
 
+        # Avoid Division by Zero
         new_vertices[:, 2][(new_vertices[:,2] < 0.01) & (new_vertices[:, 2] > -0.01)] = -0.01
 
         return new_vertices

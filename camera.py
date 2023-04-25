@@ -81,14 +81,6 @@ class Camera:
             [(self.eng.width / 2),(self.eng.height / 2),0,1]
         ])
 
-    def project_matrix2(self):
-        return np.array([
-            [self.normalize_x(),0,0,0],
-            [0,self.normalize_y(),0,0],
-            [0,0,self.normalize_z(),1],
-            [0,0,(-self.clip_far * self.clip_near) / (self.clip_far - self.clip_near),0]
-        ])
-
 
 def fov(angle):
     x = 1/(math.tan(angle/2))
