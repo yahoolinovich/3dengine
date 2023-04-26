@@ -82,6 +82,7 @@ class Camera:
         ])
 
 
+
 def fov(angle):
     x = 1/(math.tan(angle/2))
     return x

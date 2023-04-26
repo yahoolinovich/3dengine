@@ -127,3 +127,8 @@ class Object:
         for face in self.faces:
             pygame.draw.polygon(self.eng.screen, pygame.Color('white'), vix[face], 1)
 
+        # Add rasterization and shader calculations:
+            # Backface culling
+            # Filter offscreen polygons
+            # Apply shaders
+
