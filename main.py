@@ -1,4 +1,7 @@
 # main.py
+# This project takes in .obj files and outputs their vertices with 3d projection.
+
+
 import pygame
 from camera import *
 from obj import *
