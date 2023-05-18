@@ -4,3 +4,7 @@
 This project can take in .obj files and project the vertices in a 3d environment with proper projection. The user can freely move around the 3d object using mouse and keyboard inputs and the objects vertices 
 are updated in real time. The purpose of this project was to gain an understanding of computer graphics and projection, since this project only uses the Pygame and numpy libraries, all the calculations for 
 camera transformations and camera projection are done from scratch using transformation and projection matrices. 
+
+
+https://github.com/yahoolinovich/3dengine/assets/106834198/2a02f58f-95de-4a96-bee4-c88abaa868fc
+
