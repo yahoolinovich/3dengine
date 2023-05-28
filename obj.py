@@ -102,7 +102,7 @@ class Object:
             [0, 0, 0, 1]
         ])
 
-# Subtract Object vertice positions from Camera position
+# Subtract Object vertices positions from Camera position
     def camera_relation(self):
         new_vertices = self.vertices - self.eng.cam.proj_cam
 
