@@ -17,7 +17,7 @@ class Engine:
         self.FPS = 60
         self.frame = np.ones((self.width, self.height, 3)).astype('uint8')
         self.z_buffer = np.ones((self.width, self.height))
-        self.cam = Camera(self,[10,5.5,8])
+        self.cam = Camera(self,[10,5.5,-200])
         self.objects = [Object(self, 'Glass desk.obj', '')]
         
         pygame.event.set_grab(True)
