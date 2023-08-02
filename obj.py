@@ -10,6 +10,8 @@ class Object:
         self.file_name = file_name
         self.texture = texture
         self.vertices, self.faces, self.uv, self.tex_map, self.textured = self.open_obj(self.file_name)
+        if self.textured:
+            self.texture_3d = pygame.surfarray.array3d(pygame.image.load(self.texture))
 
     def open_obj(self, filename):
         vertices = []
