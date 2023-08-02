@@ -9,9 +9,9 @@ class Object:
         self.eng = eng
         self.file_name = file_name
         self.texture = texture
-        self.vertices, self.faces, self.uv, self.tex_map, self.textured = self.open_obj(self.file_name, texture)
+        self.vertices, self.faces, self.uv, self.tex_map, self.textured = self.open_obj(self.file_name)
 
-    def open_obj(self, filename, texture):
+    def open_obj(self, filename):
         vertices = []
         faces = []
         uv = []
@@ -55,7 +55,6 @@ class Object:
         else:
             uv, textures_map = np.asarray(uv), np.asarray(textures_map)
             textured = False
-
         return vertices, faces, uv, textures_map, textured
 
 # Object movement functions
@@ -121,6 +120,7 @@ class Object:
         vertices = np.dot(vertices, self.eng.cam.project_matrix())
         vertices /= vertices[:, -1].reshape(-1, 1)
         vertices = np.dot(vertices, self.eng.cam.screen_projection())
+
 
         for i in vertices[:,:2]:
             pygame.draw.circle(self.eng.screen, pygame.Color('red'), i, 2)
