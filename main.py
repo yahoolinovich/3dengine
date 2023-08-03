@@ -41,7 +41,7 @@ class Engine:
             self.screen.fill((0,0,0))
             self.cam.move()
             for i in self.objects:
-                i.draw()
+                i.draw(light)
             # self.obj.draw()
             pygame.mouse.set_pos(400, 300)
             pygame.display.flip()

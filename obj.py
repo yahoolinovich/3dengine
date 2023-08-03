@@ -117,11 +117,12 @@ class Object:
 
         return new_vertices
 
-    def draw(self):
+    def draw(self,light):
         vertices = self.camera_relation()
         vertices = np.dot(vertices, self.eng.cam.project_matrix())
         vertices /= vertices[:, -1].reshape(-1, 1)
         vertices = np.dot(vertices, self.eng.cam.screen_projection())
+        light = self.eng.light
 
 
         for i in vertices[:,:2]:
