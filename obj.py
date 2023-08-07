@@ -122,7 +122,7 @@ class Object:
         vertices = np.dot(vertices, self.eng.cam.project_matrix())
         vertices /= vertices[:, -1].reshape(-1, 1)
         vertices = np.dot(vertices, self.eng.cam.screen_projection())
-        light = self.eng.light
+        # light = self.eng.light
 
 
         for i in vertices[:,:2]:

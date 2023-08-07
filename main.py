@@ -18,7 +18,7 @@ class Engine:
         self.frame = np.ones((self.width, self.height, 3)).astype('uint8')
         self.z_buffer = np.ones((self.width, self.height))
         self.cam = Camera(self,[10,5.5,-200])
-        self.objects = [Object(self, 'Glass desk.obj', 'cubetx.png')]
+        self.objects = [Object(self, 'cuber.obj', 'cubetx.png')]
         
         pygame.event.set_grab(True)
         pygame.mouse.set_visible(False)
