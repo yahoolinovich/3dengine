@@ -9,7 +9,7 @@ class Camera:
         self.eng = eng
         self.proj_cam = np.array([*pos, 0.0])
         self.rot_cam = np.array([2, 0.0])
-        self.H_FOV = math.pi / 2
+        self.H_FOV = math.pi / 4
         self.V_FOV = self.H_FOV * (eng.height / eng.width)
         self.clip_near = 100
         self.clip_far = 10000.0
